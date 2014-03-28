@@ -7,6 +7,7 @@ test_configuration = database_configurations['test']
 ActiveRecord::Base.establish_connection(test_configuration)
 
 RSpec.configure do |config|
-  config.after(:each) do
+  config.before(:each) do
+    Person.all.each {|person| person.destroy }
   end
 end
